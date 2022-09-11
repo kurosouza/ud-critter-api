@@ -1,6 +1,7 @@
 package com.udacity.jdnd.course3.critter.pet;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,11 +10,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Nationalized;
 
+import com.udacity.jdnd.course3.critter.schedule.ScheduleEntity;
 import com.udacity.jdnd.course3.critter.user.CustomerEntity;
 
 @Entity
@@ -37,7 +40,10 @@ public class PetEntity {
 	
 	@ManyToOne
 	private CustomerEntity owner;
-
+	
+	@ManyToMany(mappedBy = "pets")
+	private Set<ScheduleEntity> schedule;
+	
 	public Long getId() {
 		return id;
 	}
