@@ -3,6 +3,8 @@ package com.udacity.jdnd.course3.critter.user;
 import java.time.DayOfWeek;
 import java.util.Set;
 
+import com.udacity.jdnd.course3.critter.basictypes.EmployeeSkill;
+
 /**
  * Represents the form that employee request and response data takes. Does not map
  * to the database directly.

@@ -1,0 +1,4 @@
++ Seed database with sample data using CommandLineRunner
++ Setup services: CustomerService, ScheduleService, EmployeeService, PetService
+
++ Fix mapping to extract relevant fields from Entities

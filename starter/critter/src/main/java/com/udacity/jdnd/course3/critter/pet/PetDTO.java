@@ -2,6 +2,8 @@ package com.udacity.jdnd.course3.critter.pet;
 
 import java.time.LocalDate;
 
+import com.udacity.jdnd.course3.critter.basictypes.PetType;
+
 /**
  * Represents the form that pet request and response data takes. Does not map
  * to the database directly.

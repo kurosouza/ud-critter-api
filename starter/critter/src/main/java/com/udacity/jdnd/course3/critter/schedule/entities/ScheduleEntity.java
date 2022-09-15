@@ -1,7 +1,6 @@
-package com.udacity.jdnd.course3.critter.schedule;
+package com.udacity.jdnd.course3.critter.schedule.entities;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -12,8 +11,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.udacity.jdnd.course3.critter.pet.PetEntity;
-import com.udacity.jdnd.course3.critter.user.EmployeeEntity;
+import com.udacity.jdnd.course3.critter.pet.entities.PetEntity;
+import com.udacity.jdnd.course3.critter.user.entities.EmployeeEntity;
+
 
 @Entity
 @Table(name = "schedule")
@@ -40,7 +40,7 @@ public class ScheduleEntity {
 	)
 	private Set<PetEntity> pets;
 	
-	private ScheduleEntity() { }
+	public ScheduleEntity() { }
 
 	public Long getId() {
 		return id;

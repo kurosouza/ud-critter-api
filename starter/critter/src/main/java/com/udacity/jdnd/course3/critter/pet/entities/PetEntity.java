@@ -1,4 +1,4 @@
-package com.udacity.jdnd.course3.critter.pet;
+package com.udacity.jdnd.course3.critter.pet.entities;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -16,8 +16,11 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Nationalized;
 
-import com.udacity.jdnd.course3.critter.schedule.ScheduleEntity;
-import com.udacity.jdnd.course3.critter.user.CustomerEntity;
+import com.udacity.jdnd.course3.critter.basictypes.PetType;
+import com.udacity.jdnd.course3.critter.schedule.entities.ScheduleEntity;
+import com.udacity.jdnd.course3.critter.user.entities.CustomerEntity;
+
+
 
 @Entity
 @Table(name = "pets")
