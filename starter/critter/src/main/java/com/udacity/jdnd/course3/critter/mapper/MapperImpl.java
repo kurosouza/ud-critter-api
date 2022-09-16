@@ -14,13 +14,13 @@ import com.udacity.jdnd.course3.critter.user.entities.EmployeeEntity;
 public class MapperImpl implements Mapper {
 
 //	Customer
-	
+
 	@Override
 	public CustomerDTO toDTO(CustomerEntity customer) {
-		
+
 		CustomerDTO customerDTO = new CustomerDTO();
 		BeanUtils.copyProperties(customer, customerDTO);
-		
+
 		return customerDTO;
 	}
 
@@ -28,7 +28,7 @@ public class MapperImpl implements Mapper {
 	public CustomerEntity toEntity(CustomerDTO customerDTO) {
 		CustomerEntity customer = new CustomerEntity();
 		BeanUtils.copyProperties(customerDTO, customer);
-		
+
 		return customer;
 	}
 
@@ -64,12 +64,17 @@ public class MapperImpl implements Mapper {
 	public PetDTO toDTO(PetEntity pet) {
 		PetDTO petDTO = new PetDTO();
 		BeanUtils.copyProperties(pet, petDTO);
+		petDTO.setType(pet.getPetType());
+		if (pet.getOwner() != null) {
+			petDTO.setOwnerId(pet.getOwner().getId());
+		}
 		return petDTO;
 	}
 
 	@Override
 	public PetEntity toEntity(PetDTO petDTO) {
 		PetEntity pet = new PetEntity();
+		pet.setPetType(petDTO.getType());
 		BeanUtils.copyProperties(petDTO, pet);
 		return pet;
 	}
