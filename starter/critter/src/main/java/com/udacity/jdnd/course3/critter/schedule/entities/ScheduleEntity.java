@@ -1,9 +1,13 @@
 package com.udacity.jdnd.course3.critter.schedule.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -11,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.udacity.jdnd.course3.critter.basictypes.EmployeeSkill;
 import com.udacity.jdnd.course3.critter.pet.entities.PetEntity;
 import com.udacity.jdnd.course3.critter.user.entities.EmployeeEntity;
 
@@ -31,14 +36,18 @@ public class ScheduleEntity {
 			joinColumns = {@JoinColumn(name = "schedule_id")},
 			inverseJoinColumns = {@JoinColumn(name = "employee_id")}
 	)
-	private Set<EmployeeEntity> employees;
+	private List<EmployeeEntity> employees;
 	
 	@ManyToMany
 	@JoinTable(name = "pets_schedule",
 		joinColumns = {@JoinColumn(name = "schedule_id")},
 		inverseJoinColumns = {@JoinColumn(name = "pet_id")}
 	)
-	private Set<PetEntity> pets;
+	private List<PetEntity> pets;
+	
+	@Enumerated(EnumType.STRING)
+	@ElementCollection
+	private Set<EmployeeSkill> activities;
 	
 	public ScheduleEntity() { }
 
@@ -58,21 +67,30 @@ public class ScheduleEntity {
 		this.date = date;
 	}
 
-	public Set<EmployeeEntity> getEmployees() {
+	public List<EmployeeEntity> getEmployees() {
 		return employees;
 	}
 
-	public void setEmployees(Set<EmployeeEntity> employees) {
+	public void setEmployees(List<EmployeeEntity> employees) {
 		this.employees = employees;
 	}
 
-	public Set<PetEntity> getPets() {
+	public List<PetEntity> getPets() {
 		return pets;
 	}
 
-	public void setPets(Set<PetEntity> pets) {
+	public void setPets(List<PetEntity> pets) {
 		this.pets = pets;
 	}
+
+	public Set<EmployeeSkill> getActivities() {
+		return activities;
+	}
+
+	public void setActivities(Set<EmployeeSkill> activities) {
+		this.activities = activities;
+	}
+	
 	
 	
 }

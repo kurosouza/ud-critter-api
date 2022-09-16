@@ -1,5 +1,9 @@
 package com.udacity.jdnd.course3.critter.mapper;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.BeanUtils;
 
 import com.udacity.jdnd.course3.critter.pet.PetDTO;
@@ -49,7 +53,14 @@ public class MapperImpl implements Mapper {
 	@Override
 	public ScheduleDTO toDTO(ScheduleEntity schedule) {
 		ScheduleDTO scheduleDTO = new ScheduleDTO();
-		BeanUtils.copyProperties(schedule, scheduleDTO);
+		List<Long> employeeIds = schedule.getEmployees().stream().map(EmployeeEntity::getId).collect(Collectors.toList());
+		scheduleDTO.setEmployeeIds(employeeIds);
+		List<Long> petIds = schedule.getPets().stream().map(PetEntity::getId).collect(Collectors.toList());
+		scheduleDTO.setPetIds(petIds);
+		scheduleDTO.setActivities(Set.copyOf(schedule.getActivities()));
+		scheduleDTO.setDate(schedule.getDate());
+		scheduleDTO.setId(schedule.getId());
+			
 		return scheduleDTO;
 	}
 
