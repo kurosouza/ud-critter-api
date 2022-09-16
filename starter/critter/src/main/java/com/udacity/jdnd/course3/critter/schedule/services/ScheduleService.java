@@ -70,4 +70,20 @@ public class ScheduleService {
 		return schedules;		
 	}
 	
+	
+	public List<ScheduleEntity> getSchedulesForPet(Long petId) {
+		List<ScheduleEntity> scheduleCollection  = scheduleRepository.findAllScheduleEntityByPetsId(petId);
+		return scheduleCollection;
+	}
+	
+	public List<ScheduleEntity> getSchedulesForEmployee(Long employeeId) {
+		List<ScheduleEntity> scheduleCollection  = scheduleRepository.findAllScheduleEntityByEmployeesId(employeeId);
+		return scheduleCollection;
+	}
+	
+	public List<ScheduleEntity> getSchedulesForCustomer(Long customerId) {
+		List<ScheduleEntity> scheduleCollection  = scheduleRepository.findAllScheduleEntityByPetsOwnerId(customerId);
+		return scheduleCollection;
+	}
+	
 }
