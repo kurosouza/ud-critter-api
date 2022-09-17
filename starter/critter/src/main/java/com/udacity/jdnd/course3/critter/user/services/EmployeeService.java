@@ -53,7 +53,7 @@ public class EmployeeService {
 		}
 		
 		daysAvailable.forEach(dayOfWeek -> {			
-				employee.getDaysAvailable().add(dayOfWeek);			
+			employee.getDaysAvailable().add(dayOfWeek);			
 		});
 		
 		employeeRepository.save(employee);
@@ -68,4 +68,5 @@ public class EmployeeService {
 		
 		return matchedEmployees;
 	}
+	
 }

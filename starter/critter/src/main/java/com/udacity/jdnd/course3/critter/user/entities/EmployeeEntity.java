@@ -9,6 +9,9 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -20,12 +23,12 @@ import com.udacity.jdnd.course3.critter.schedule.entities.ScheduleEntity;
 
 @NamedQueries({
 //	@NamedQuery(name = "Employee.FindEmployeesBySkillsAndDate", query = "Select distinct e from EmployeeEntity e JOIN e.skills s JOIN e.daysAvailable d where s in :skills AND d in :day")
-	@NamedQuery(name = "Employee.FindEmployeesBySkillsAndDate", query = "Select distinct e from EmployeeEntity e JOIN e.skills s JOIN e.daysAvailable d where s in :skills AND d in :day")
+	@NamedQuery(name = "Employee.FindEmployeesBySkillsAndDate", query = "Select distinct e from EmployeeEntity e, IN (e.skills) s where s in (:skills) AND e.daysAvailable IN :day")
 })
 @Entity
 @Table(name = "employees")
 public class EmployeeEntity extends PersonEntity {
-
+	
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
 	private Set<EmployeeSkill> skills = new HashSet<>();
