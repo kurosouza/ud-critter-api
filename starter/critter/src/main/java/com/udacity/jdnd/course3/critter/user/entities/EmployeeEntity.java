@@ -22,8 +22,8 @@ import com.udacity.jdnd.course3.critter.schedule.entities.ScheduleEntity;
 
 
 @NamedQueries({
-//	@NamedQuery(name = "Employee.FindEmployeesBySkillsAndDate", query = "Select distinct e from EmployeeEntity e JOIN e.skills s JOIN e.daysAvailable d where s in :skills AND d in :day")
-	@NamedQuery(name = "Employee.FindEmployeesBySkillsAndDate", query = "Select distinct e from EmployeeEntity e, IN (e.skills) s where s in (:skills) AND e.daysAvailable IN :day")
+	@NamedQuery(name = "Employee.FindEmployeesBySkillsAndDate", query = "Select distinct e from EmployeeEntity e JOIN e.skills s JOIN e.daysAvailable d where s in :skills AND d in :day")
+//	@NamedQuery(name = "Employee.FindEmployeesBySkillsAndDate", query = "Select distinct e from EmployeeEntity e, IN (e.skills) s where s in (:skills) AND e.daysAvailable IN :day")
 })
 @Entity
 @Table(name = "employees")

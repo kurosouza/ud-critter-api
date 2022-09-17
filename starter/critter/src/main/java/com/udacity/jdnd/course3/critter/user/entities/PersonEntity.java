@@ -1,25 +1,17 @@
 package com.udacity.jdnd.course3.critter.user.entities;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.Nationalized;
 
-@Entity
-@Table(name = "people")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 public abstract class PersonEntity {
 	
 	@Id
-	@TableGenerator(name = "person_gen", table = "id_generator", pkColumnName = "name", valueColumnName = "seq", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "person_gen")
-	// @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;
 
 	@Nationalized
