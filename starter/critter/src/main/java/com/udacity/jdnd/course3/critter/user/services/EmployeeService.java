@@ -2,7 +2,7 @@ package com.udacity.jdnd.course3.critter.user.services;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -44,13 +44,19 @@ public class EmployeeService {
 	@Transactional
 	public EmployeeEntity setEmployeeAvailablity(Set<DayOfWeek> daysAvailable, Long employeeId) {
 		EmployeeEntity employee = employeeRepository.findById(employeeId).orElseThrow(AppEntityNotFoundException::new);
+		// Set<DayOfWeek> daysAvlblCopy = Set.of(daysAvailable);
 		
-		daysAvailable.forEach(dayOfWeek -> {
-			if(!employee.getDaysAvailable().contains(dayOfWeek)) {
-				employee.getDaysAvailable().add(dayOfWeek);
-			}
+		if(employee.getDaysAvailable() == null) {
+			employee.setDaysAvailable(new HashSet<DayOfWeek>());
+		} else {
+			employee.getDaysAvailable().clear();
+		}
+		
+		daysAvailable.forEach(dayOfWeek -> {			
+				employee.getDaysAvailable().add(dayOfWeek);			
 		});
 		
+		employeeRepository.save(employee);
 		return employee;
 	}
 	

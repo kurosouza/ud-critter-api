@@ -1,9 +1,11 @@
 package com.udacity.jdnd.course3.critter.user.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -22,8 +24,8 @@ public class CustomerEntity extends PersonEntity {
 	@Column(name = "notes", length = 512)
 	private String notes;
 
-	@OneToMany(mappedBy = "owner")
-	private List<PetEntity> pets;
+	@OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+	private List<PetEntity> pets = new ArrayList<>();
 
 	public CustomerEntity() {
 		super();

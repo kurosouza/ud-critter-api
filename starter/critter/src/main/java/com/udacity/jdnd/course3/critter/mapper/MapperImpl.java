@@ -1,5 +1,6 @@
 package com.udacity.jdnd.course3.critter.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,7 +25,11 @@ public class MapperImpl implements Mapper {
 
 		CustomerDTO customerDTO = new CustomerDTO();
 		BeanUtils.copyProperties(customer, customerDTO);
-
+		
+		List<Long> petIds = new ArrayList<Long>();
+		customer.getPets().forEach(pet -> petIds.add(pet.getId()));
+		customerDTO.setPetIds(petIds);
+		
 		return customerDTO;
 	}
 

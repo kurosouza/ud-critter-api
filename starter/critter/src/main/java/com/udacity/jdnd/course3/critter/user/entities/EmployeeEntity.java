@@ -1,6 +1,7 @@
 package com.udacity.jdnd.course3.critter.user.entities;
 
 import java.time.DayOfWeek;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,9 +19,8 @@ import com.udacity.jdnd.course3.critter.schedule.entities.ScheduleEntity;
 
 
 @NamedQueries({
-//	@NamedQuery(name = "Employee.FindEmployeesBySkillsAndDate", query = "Select e from EmployeeEntity e where :skills = some elements(e.skills) and :days = any elements( e.daysAvailable)")
-//	@NamedQuery(name = "Employee.FindEmployeesBySkillsAndDate", query = "Select e from EmployeeEntity e JOIN e.skills s where s in :skills and :day in e.daysAvailable")
-	@NamedQuery(name = "Employee.FindEmployeesBySkillsAndDate", query = "Select distinct e from EmployeeEntity e JOIN e.skills s JOIN e.daysAvailable d where s in :skills AND d = :day")
+//	@NamedQuery(name = "Employee.FindEmployeesBySkillsAndDate", query = "Select distinct e from EmployeeEntity e JOIN e.skills s JOIN e.daysAvailable d where s in :skills AND d in :day")
+	@NamedQuery(name = "Employee.FindEmployeesBySkillsAndDate", query = "Select distinct e from EmployeeEntity e JOIN e.skills s JOIN e.daysAvailable d where s in :skills AND d in :day")
 })
 @Entity
 @Table(name = "employees")
@@ -28,11 +28,11 @@ public class EmployeeEntity extends PersonEntity {
 
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
-	private Set<EmployeeSkill> skills;
+	private Set<EmployeeSkill> skills = new HashSet<>();
 	
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
-	private Set<DayOfWeek> daysAvailable;
+	private Set<DayOfWeek> daysAvailable = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "employees")
 	private List<ScheduleEntity> schedule;
